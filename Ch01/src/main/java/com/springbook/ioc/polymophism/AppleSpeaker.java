@@ -1,7 +1,10 @@
 package com.springbook.ioc.polymophism;
 
-public class AppleSpeaker implements Speaker {
+import org.springframework.stereotype.Component;
 
+@Component("speaker")
+public class AppleSpeaker implements Speaker {
+	/* Constructor */
 	public AppleSpeaker() {
 		System.out.println("==> AppleSpeaker 객체 생성");
 	}

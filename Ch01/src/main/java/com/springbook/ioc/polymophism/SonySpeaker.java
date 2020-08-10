@@ -1,5 +1,8 @@
 package com.springbook.ioc.polymophism;
 
+import org.springframework.stereotype.Component;
+
+@Component("sony")
 public class SonySpeaker implements Speaker {
 	/* Constructor */
 	public SonySpeaker() {

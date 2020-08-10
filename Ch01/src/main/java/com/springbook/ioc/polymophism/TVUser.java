@@ -6,7 +6,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class TVUser {
 	public static void main(String[] args) {
 		/* 1. Spring Container 구동. */
-		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext01.xml");
 
 		/* 2. Spring Container로 부터 필요한 Object 요청.(lookup) */
 		TV tv = (TV) factory.getBean("TV");

@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- 의존성 주입 -->
 	<!-- <bean id="TV" class="com.springbook.ioc.polymophism.LGTV">
 		<constructor-arg ref="apple" />
 	</bean> -->
-	
+
 	<!-- <bean id="TV" class="com.springbook.ioc.polymophism.LGTV">
 		<constructor-arg index="1" value="270000" />
 		<constructor-arg index="0" ref="sony" />
 	</bean> -->
-	<bean id="TV" class="com.springbook.ioc.polymophism.SamsungTV">
+	<!-- <bean id="TV" class="com.springbook.ioc.polymophism.SamsungTV">
 		<property name="speaker" ref="apple" />
 		<property name="price" value="450000" />
-	</bean>
+	</bean> -->
+	<!-- p_NameSpace -->
+	<bean id="TV" class="com.springbook.ioc.polymophism.SamsungTV" p:speaker-ref="sony" />
 
 	<!-- IOC(Inversion of Control) -->
 	<bean id="sony" class="com.springbook.ioc.polymophism.SonySpeaker" />

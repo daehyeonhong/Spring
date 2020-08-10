@@ -1,25 +1,29 @@
 package com.springbook.ioc.polymophism;
 
+import javax.inject.Inject;
+
+/*import org.springframework.beans.factory.annotation.Autowired;*/
+import org.springframework.stereotype.Component;
+
+@Component("Samsung")
 public class SamsungTV implements TV {
+	/* @Autowired */
+	@Inject
 	/* 속성 */
 	private Speaker speaker;
 	private int price;
 
 	/* Constructor */
-	public SamsungTV() {
-		System.out.println("==> SamsungTV(1) 객체 생성");
-	}
-
-	public SamsungTV(Speaker speaker) {
-		System.out.println("==> SamsungTV(1) 객체 생성");
-		this.speaker = speaker;
-	}
-
-	public SamsungTV(Speaker speaker, int price) {
-		System.out.println("==> SamsungTV(1) 객체 생성");
-		this.speaker = speaker;
-		this.price = price;
-	}
+	/*
+	 * public SamsungTV() { System.out.println("==> SamsungTV(1) 객체 생성"); }
+	 * 
+	 * public SamsungTV(Speaker speaker) {
+	 * System.out.println("==> SamsungTV(1) 객체 생성"); this.speaker = speaker; }
+	 * 
+	 * public SamsungTV(Speaker speaker, int price) {
+	 * System.out.println("==> SamsungTV(1) 객체 생성"); this.speaker = speaker;
+	 * this.price = price; }
+	 */
 
 	/* Setter_Method */
 	public void setSpeaker(Speaker speaker) {

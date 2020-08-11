@@ -33,8 +33,8 @@ public class CollectionBeanClient {
 
 		/* Map_Object 얻기 */
 		Map<String, String> map = beanMap.getAddressList();
-		Set<String> keySet = map.keySet();
-		Iterator<String> iteratorMap = keySet.iterator();
+		Set<String> keySetMap = map.keySet();
+		Iterator<String> iteratorMap = keySetMap.iterator();
 		while (iteratorMap.hasNext()) {
 			String name = iteratorMap.next();
 			System.out.println(map.get(name));
@@ -42,8 +42,8 @@ public class CollectionBeanClient {
 
 		/* Properties 얻기 */
 		Properties properties = beanProperties.getAddressList();
-		Set<Object> kS = properties.keySet();
-		Iterator<Object> iteratorProperties = kS.iterator();
+		Set<Object> keySetProperties = properties.keySet();
+		Iterator<Object> iteratorProperties = keySetProperties.iterator();
 		while (iteratorProperties.hasNext()) {
 			String name = iteratorProperties.next().toString(), address = properties.getProperty(name);
 			System.out.printf("%s : %s\n", name, address);

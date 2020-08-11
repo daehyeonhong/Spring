@@ -15,9 +15,8 @@ public interface BoardService {
 	void deleteBoard(BoardVO vo);
 
 	/* 글 상세 조회 */
-	BoardVO getboBoardVO(BoardVO boardVO);
+	BoardVO getBoard(BoardVO boardVO);
 
 	/* 글 목록 조회 */
 	List<BoardVO> getBoardList(BoardVO vo);
-
 }

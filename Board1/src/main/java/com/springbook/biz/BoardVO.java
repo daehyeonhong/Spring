@@ -54,4 +54,11 @@ public class BoardVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardVO [글 번호: " + seq + ", 글 제목: " + title + ", 작성자: " + writer + ", 내용: " + content + ", 등록 일: "
+				+ regDate + ", 조회 수: " + cnt + "]";
+	}
+
 }

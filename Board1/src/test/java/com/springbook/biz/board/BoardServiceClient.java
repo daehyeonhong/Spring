@@ -35,19 +35,19 @@ public class BoardServiceClient {
 		System.out.printf("글 상세 조회:\n--> %s\n", board);
 
 		/* 4-2. 글 수정 */
-		boardSeq.setSeq(2);
+		boardSeq.setSeq(1);
 		boardSeq.setTitle("수정 제목");
 		boardSeq.setContent("수정 내용");
 
-		/* 수정 처리 */
+		/* 4-2-1. 수정 처리 */
 		boardService.updateBoard(boardSeq);
 
-		/* 수정 내용 조회 */
+		/* 4-2-2. 수정 내용 조회 */
 		board = boardService.getBoard(boardSeq);
 		System.out.printf("글 수정 결과:\n--> %s\n", board);
 
 		/* 4-3. 글 삭제 */
-		vo.setSeq(7);
+		vo.setSeq(3);
 		boardService.deleteBoard(vo);
 
 		/* 5. 자원 해제 */

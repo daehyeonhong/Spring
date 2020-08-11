@@ -1,4 +1,4 @@
-package com.springbook.biz.board.implement;
+package com.springbook.biz.board.impl;
 
 import java.util.List;
 import javax.inject.Inject;
@@ -8,7 +8,7 @@ import com.springbook.biz.board.BoardService;
 
 /*@Component("boardService")*/
 @Service("boardService")
-public class BoardServiceImplement implements BoardService {
+public class BoardServiceImpl implements BoardService {
 	/* @Autowired */
 	@Inject
 	private BoardDAO boardDAO;

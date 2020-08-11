@@ -1,4 +1,4 @@
-package com.springbook.biz.board.implement;
+package com.springbook.biz.board.impl;
 
 import java.sql.Connection;
 import java.sql.Date;

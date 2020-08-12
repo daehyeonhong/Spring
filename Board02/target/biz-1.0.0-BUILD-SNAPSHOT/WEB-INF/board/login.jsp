@@ -6,8 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>
-		<em>WELCOME to Login.jsp</em>
-	</h1>
+	<h1><em>WELCOME to Login.jsp</em></h1>
 </body>
 </html>

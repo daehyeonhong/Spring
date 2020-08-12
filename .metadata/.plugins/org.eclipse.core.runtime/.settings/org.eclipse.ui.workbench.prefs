@@ -1,7 +1,7 @@
 //org.eclipse.ui.commands/state/org.eclipse.ui.navigator.resources.nested.changeProjectPresentation/org.eclipse.ui.commands.radioState=false
 //org.eclipse.ui.commands/state/org.eclipse.wst.xml.views.XPathView.processor.xpathprocessor/org.eclipse.ui.commands.radioState=xpath10
 ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc\tTorg.eclipse.debug.ui.presentation\tTorg.eclipse.jdt.ui.presentation
-ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.jface.textfont
+ColorsAndFontsPreferencePage.selectedElement=Corg.eclipse.search.ui.match.highlight
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=;org.eclipse.m2e.discovery;
 REMOTE_COMMANDS_VIEW_FONT=1|JetBrains Mono|12.75|0|WINDOWS|1|-17|0|0|0|400|0|0|0|0|3|2|1|49|JetBrains Mono;
 eclipse.preferences.version=1

@@ -8,3 +8,4 @@ cnt NUMBER(3) DEFAULT 0
 );
 DESC BOARD;
 SELECT*FROM BOARD;
+desc board;

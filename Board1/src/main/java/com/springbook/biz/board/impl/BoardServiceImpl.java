@@ -1,7 +1,7 @@
 package com.springbook.biz.board.impl;
 
 import java.util.List;
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.springbook.biz.BoardVO;
 import com.springbook.biz.board.BoardService;
@@ -10,8 +10,10 @@ import com.springbook.biz.board.BoardService;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	/* @Autowired */
-	@Inject
-	private BoardDAO boardDAO;
+	/* @Inject */
+	/* private BoardDAO boardDAO; */
+	@Autowired
+	private BoardDAOSpring boardDAO;
 
 	@Override
 	public void insertBoard(BoardVO vo) {

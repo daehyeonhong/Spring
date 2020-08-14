@@ -16,6 +16,13 @@ public class GetBoardListController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("==> 글 목록 검색 처리");
 
+		/*
+		 * String searchCondition = request.getParameter("searchCondition"),
+		 * searchKeyword = request.getParameter("searchKeyword"); if
+		 * (searchCondition.equals("TITLE")) { if (searchKeyword.trim().equals("")) {
+		 * searchKeyword = ""; } }
+		 */
+
 		/* DB연동 처리 */
 		BoardVO vo = new BoardVO();
 		BoardDAO boardDAO = new BoardDAO();

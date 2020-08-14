@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Repository;
-
 import com.springbook.biz.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
 
@@ -18,11 +16,13 @@ public class BoardDAO {
 	private ResultSet resultSet = null;
 
 	/* SQL명령어 */
-	private final String BOARD_INSERT = "INSERT INTO board(seq,title,writer,content)VALUES((SELECT NVL(MAX(SEQ),0)+1 FROM board),?,?,?)";
-	private final String BOARD_UPDATE = "UPDATE board SET title=?,content=? WHERE seq=?";
-	private final String BOARD_DELETE = "DELETE FROM board WHERE seq=?";
-	private final String BOARD_GET = "SELECT*FROM board WHERE seq=?";
-	private final String BOARD_LIST = "SELECT*FROM board ORDER BY seq DESC";
+	private final String
+			BOARD_INSERT = "INSERT INTO board(seq,title,writer,content)VALUES((SELECT NVL(MAX(SEQ),0)+1 FROM board),?,?,?)",
+			BOARD_UPDATE = "UPDATE board SET title=?,content=? WHERE seq=?",
+			BOARD_DELETE = "DELETE FROM board WHERE seq=?",
+			BOARD_GET = "SELECT*FROM board WHERE seq=?",
+			BOARD_LIST = "SELECT*FROM board ORDER BY seq DESC",
+			BOARD_CNT = "UPDATE BOARD SET cnt=NVL(cnt,0)+1 WHERE seq=?";
 
 	/* 글 입력 */
 	public void insertBoard(BoardVO vo) {
@@ -72,12 +72,15 @@ public class BoardDAO {
 		return boardList;
 	}
 
+	/* 게시글 조회 */
 	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("==> JDBC로 getBoard()기능 처리");
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		BoardVO board = new BoardVO();
+		/* 조회수 증가 메소드 호출 */
+		updateBoardCnt(vo);
 		try {
 			int seq = vo.getSeq();
 			connection = JDBCUtil.getConnection();
@@ -100,6 +103,7 @@ public class BoardDAO {
 		return board;
 	}
 
+	/* 게시글 수정 */
 	public void updateBoard(BoardVO vo) {
 		System.out.println("==> JDBC로 updateBoard()기능 처리");
 		try {
@@ -116,11 +120,27 @@ public class BoardDAO {
 		}
 	}
 
+	/* 게시글 삭제 */
 	public void deleteBoard(BoardVO vo) {
 		System.out.println("==> JDBC로 deleteBoard()기능 처리");
 		try {
 			connection = JDBCUtil.getConnection();
 			preparedStatement = connection.prepareStatement(BOARD_DELETE);
+			preparedStatement.setInt(1, vo.getSeq());
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(preparedStatement, connection);
+		}
+	}
+
+	/* 조회수 증가 */
+	public void updateBoardCnt(BoardVO vo) {
+		System.out.println("==> JDBC로 updateBoardCnt()기능 처리");
+		try {
+			connection = JDBCUtil.getConnection();
+			preparedStatement = connection.prepareStatement(BOARD_CNT);
 			preparedStatement.setInt(1, vo.getSeq());
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {

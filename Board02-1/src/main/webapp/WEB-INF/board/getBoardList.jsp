@@ -9,7 +9,7 @@
 <body>
 	<div align="center">
 		<h1><em>BoardList</em></h1>
-		<h3>테스트님 환영합니다.<a href="logout.do">Log-out</a></h3>
+		<h3>[${user.name}]님 환영합니다.<a href="logout.do">Log-out</a></h3>
 		<!-- 검색 시작 -->
 		<form action="getBoardList.jsp" method="post">
 			<table border="1" cellspacing="0" style="width: 700px">
@@ -46,7 +46,7 @@
 			</c:forEach>
 		</table>
 		<br />
-		<a href="insretBoard.jsp">새 글 등록</a>
+		<a href="insertBoard.do">새 글 등록</a>
 	</div>
 </body>
 </html>

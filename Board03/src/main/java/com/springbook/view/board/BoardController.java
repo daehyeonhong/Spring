@@ -73,7 +73,7 @@ public class BoardController {
 
 	/* 글 수정 */
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("board") BoardVO vo) throws IllegalStateException, IOException {
+	public String updateBoard(@ModelAttribute("board") BoardVO vo) throws IOException {
 		/* File_Upload */
 		MultipartFile uploadFile = vo.getUploadFile();
 		if (!uploadFile.isEmpty()) {

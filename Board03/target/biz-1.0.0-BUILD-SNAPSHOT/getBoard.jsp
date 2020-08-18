@@ -7,6 +7,22 @@
 </head>
 <body>
 
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+			function readURL(input) {
+					if (input.files && input.files[0]) {
+							let reader = new FileReader();
+							reader.onload = function(e) {
+									$('#foo').attr('src', e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
+					}
+			}
+			$("#uploadFile").change(function() {
+					readURL(this);
+			});
+	</script>
+
 	<div align="center">
 		<h1>getBoard</h1>
 		<a href="logout.do">Log-out</a>
@@ -30,7 +46,7 @@
 
 				<tr>
 					<td bgcolor="orange">File: </td>
-					<td><img alt="image" src="${board.images}" />
+					<td><img alt="image" id="foo" src="${board.images}" />
 					<input type="file" name="uploadFile" id="uploadFile" /></td>
 				</tr>
 

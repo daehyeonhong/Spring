@@ -18,19 +18,22 @@ public class LoginController {
 		System.out.println("==> 로그인 화면으로 이동");
 		vo.setId("test");
 		vo.setPassword("test1234");
+		vo.setName("홍길동");
+		vo.setRole("admin");
 		return "login.jsp";
 	}
 
 	/* ID, Password 값이 설정된 UserVO가 넘어 옴 */
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(UserVO vo, UserDAO userDAO, HttpSession session) {
+		System.out.printf("ID: %s\nPassword: %s\n", vo.getId(), vo.getPassword());
 		if (vo.getId() == null || vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야 합니다.");
 		}
 		UserVO user = userDAO.getUser(vo);
 		if (user != null) {
-			session.setAttribute("useName", user.getName());
-			System.out.printf("userName: %s", user.getName());
+			session.setAttribute("userName", user.getName());
+			System.out.printf("userName: %s\n", user.getName());
 			return "getBoardList.do";
 		}
 		return "login.jsp";

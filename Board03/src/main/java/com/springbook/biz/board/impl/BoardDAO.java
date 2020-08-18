@@ -1,5 +1,6 @@
 package com.springbook.biz.board.impl;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -7,6 +8,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
@@ -20,12 +23,16 @@ public class BoardDAO {
 	private ResultSet resultSet = null;
 
 	/* SQL명령어 */
-	private final String BOARD_INSERT = "INSERT INTO board(seq,title,writer,content)VALUES((SELECT NVL(MAX(SEQ),0)+1 FROM board),?,?,?)";
+	private final String BOARD_INSERT = "INSERT INTO board(seq,title,writer,content,uploadFile)VALUES((SELECT NVL(MAX(SEQ),0)+1 FROM board),?,?,?,?)";
 	private final String BOARD_UPDATE = "UPDATE board SET title=?,content=? WHERE seq=?";
+	private final String BOARD_UPDATE_UPLOADFILE = "UPDATE board SET title=?,content=?,uploadFile=? WHERE seq=?";
 	private final String BOARD_DELETE = "DELETE FROM board WHERE seq=?";
 	private final String BOARD_GET = "SELECT*FROM board WHERE seq=?";
+	/* private final String BOARD_LIST = "SELECT*FROM board ORDER BY seq DESC"; */
+	private final String BOARD_LIST = "SELECT*FROM board WHERE(title LIKE '%'||?||'%' OR content LIKE '%'||?||'%')ORDER BY seq DESC";
 	private final String BOARD_LIST_TITLE = "SELECT*FROM board WHERE title LIKE '%'||?||'%' ORDER BY seq DESC";
 	private final String BOARD_LIST_CONTENT = "SELECT*FROM board WHERE content LIKE '%'||?||'%' ORDER BY seq DESC";
+	private final String BOARD_UPDATE_COUNT = "UPDATE board SET cnt=NVL(cnt,0)+1 WHERE seq=?";
 
 	/* 글 입력 */
 	public void insertBoard(BoardVO vo) {
@@ -36,6 +43,7 @@ public class BoardDAO {
 			preparedStatement.setString(1, vo.getTitle());
 			preparedStatement.setString(2, vo.getWriter());
 			preparedStatement.setString(3, vo.getContent());
+			preparedStatement.setString(4, vo.getUploadFile().getOriginalFilename());
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,8 +62,15 @@ public class BoardDAO {
 				preparedStatement = connection.prepareStatement(BOARD_LIST_TITLE);
 			} else if (vo.getSearchCondition().equals("CONTENT")) {
 				preparedStatement = connection.prepareStatement(BOARD_LIST_CONTENT);
+			} else {
+				preparedStatement = connection.prepareStatement(BOARD_LIST);
 			}
-			preparedStatement.setString(1, vo.getSearchKeyword());
+			if (vo.getSearchCondition().equals("TITLE") || vo.getSearchCondition().equals("CONTENT")) {
+				preparedStatement.setString(1, vo.getSearchKeyword());
+			} else if (vo.getSearchCondition().equals("")) {
+				preparedStatement.setString(1, vo.getSearchKeyword());
+				preparedStatement.setString(2, vo.getSearchKeyword());
+			}
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				BoardVO board = new BoardVO();
@@ -86,6 +101,8 @@ public class BoardDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		BoardVO board = new BoardVO();
+		/* 조회수 증가 Method 호출 */
+		updateBoardCount(vo);
 		try {
 			int seq = vo.getSeq();
 			connection = JDBCUtil.getConnection();
@@ -99,6 +116,8 @@ public class BoardDAO {
 				board.setContent(resultSet.getString("content"));
 				board.setRegDate(resultSet.getDate("regDate"));
 				board.setCnt(resultSet.getInt("cnt"));
+				System.out.println("c:/upload/" + resultSet.getString("uploadFile"));
+				board.setImages("c:/upload/" + resultSet.getString("uploadFile"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,11 +130,22 @@ public class BoardDAO {
 	public void updateBoard(BoardVO vo) {
 		System.out.println("==> JDBC로 updateBoard()기능 처리");
 		try {
-			connection = JDBCUtil.getConnection();
-			preparedStatement = connection.prepareStatement(BOARD_UPDATE);
-			preparedStatement.setString(1, vo.getTitle());
-			preparedStatement.setString(2, vo.getContent());
-			preparedStatement.setInt(3, vo.getSeq());
+			/* 수정시 getBoard.jsp에서 uploadFile이 넘어오면 file경로 수정 */
+			/* 넘어오지 않으면 그대로 적용 *//* File_Upload */
+			MultipartFile uploadFile = vo.getUploadFile();
+			if (!uploadFile.isEmpty()) {
+				preparedStatement = connection.prepareStatement(BOARD_UPDATE_UPLOADFILE);
+				preparedStatement.setString(1, vo.getTitle());
+				preparedStatement.setString(2, vo.getContent());
+				preparedStatement.setString(3, uploadFile.getOriginalFilename());
+				preparedStatement.setInt(4, vo.getSeq());
+			} else {
+				connection = JDBCUtil.getConnection();
+				preparedStatement = connection.prepareStatement(BOARD_UPDATE);
+				preparedStatement.setString(1, vo.getTitle());
+				preparedStatement.setString(2, vo.getContent());
+				preparedStatement.setInt(3, vo.getSeq());
+			}
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,4 +167,20 @@ public class BoardDAO {
 			JDBCUtil.close(preparedStatement, connection);
 		}
 	}
+
+	/* 조회수 증가 Method */
+	public void updateBoardCount(BoardVO vo) {
+		System.out.println("==> JDBC로 updateCount()기능 처리");
+		try {
+			connection = JDBCUtil.getConnection();
+			preparedStatement = connection.prepareStatement(BOARD_UPDATE_COUNT);
+			preparedStatement.setInt(1, vo.getSeq());
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(preparedStatement, connection);
+		}
+	}
+
 }

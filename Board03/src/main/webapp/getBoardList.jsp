@@ -51,7 +51,7 @@
 			</c:forEach>
 		</table>
 		<br />
-		<a href="insertBoard.do">새 글 등록</a>
+		<a href="insertBoard.jsp">새 글 등록</a>
 	</div>
 </body>
 </html>

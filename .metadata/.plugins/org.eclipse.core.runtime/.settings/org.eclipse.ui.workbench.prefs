@@ -3,7 +3,7 @@
 CONTENT_ASSIST_BACKGROUND_COLOR=17,17,52
 CONTENT_ASSIST_FOREGROUND_COLOR=221,211,244
 ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc\tTorg.eclipse.debug.ui.presentation\tTorg.eclipse.jdt.ui.presentation\tTorg.eclipse.wst.jsdt.ui.presentation\tTorg.eclipse.emf.codegen.ui.jet\tTorg.eclipse.rse.ui.presentation\tTorg.eclipse.rse.ui.messages.presentation\tTorg.eclipse.rse.ui.remotecommandsview.presentation\tTorg.springsource.ide.eclipse.commons.ui\tTorg.eclipse.wst.sse.ui\tTorg.eclipse.pde.genericeditor.target.extension.presentation\tTorg.eclipse.mylyn.tasks.ui.presentation\tTorg.eclipse.compare.contentmergeviewer.TextMergeViewer\tTorg.eclipse.ui.presentation.default\tTorg.eclipse.mylyn.wikitext.ui.presentation
-ColorsAndFontsPreferencePage.selectedElement=CACTIVE_HYPERLINK_COLOR
+ColorsAndFontsPreferencePage.selectedElement=Corg.eclipse.ui.workbench.INFORMATION_BACKGROUND
 HYPERLINK_COLOR=255,255,255
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=org.eclipse.m2e.discovery;
 REMOTE_COMMANDS_VIEW_FONT=1|JetBrains Mono|13.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|JetBrains Mono;

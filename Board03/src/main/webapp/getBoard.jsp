@@ -6,6 +6,7 @@
 <title>Board</title>
 </head>
 <body>
+
 	<div align="center">
 		<h1>getBoard</h1>
 		<a href="logout.do">Log-out</a>

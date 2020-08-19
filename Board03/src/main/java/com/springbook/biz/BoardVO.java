@@ -1,13 +1,25 @@
 package com.springbook.biz;
 
 import java.sql.Date;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyAttribute;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.springframework.web.multipart.MultipartFile;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BoardVO {
+	@XmlAnyAttribute
 	private int seq, cnt;
-	private String title, writer, content, searchCondition, searchKeyword, images;
+	private String title, writer, content;
 	private Date regDate;
+
+	@XmlTransient
 	private MultipartFile uploadFile;
+	@XmlTransient
+	private String images, searchCondition, searchKeyword;
 
 	public int getSeq() {
 		return seq;

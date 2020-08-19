@@ -16,10 +16,6 @@ public class LoginController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET) /* HandlerMapping */
 	public String loginView(@ModelAttribute("user") UserVO vo) {/* Model.addAttribute("user", vo) */
 		System.out.println("==> 로그인 화면으로 이동");
-		/*
-		 * vo.setId("test"); vo.setPassword("test1234"); vo.setName("홍길동");
-		 * vo.setRole("admin");
-		 */
 		return "login.jsp";
 	}
 
@@ -39,4 +35,9 @@ public class LoginController {
 		return "login.jsp";
 	}
 
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login.jsp";
+	}
 }

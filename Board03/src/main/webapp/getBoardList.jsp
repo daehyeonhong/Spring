@@ -16,7 +16,7 @@
 		<a href="getBoardList.do?lang=ko">
 			<spring:message code="message.user.login.language.ko" />
 		</a>
-		<h3>[${userName}]<spring:message code="message.board.list.welcomeMsg" /><a href="logout.do">Log-Out</a></h3>
+		<h3>[${userName}]<spring:message code="message.board.list.welcomeMsg" /><br /><a href="logout.do">Log-Out</a></h3>
 
 		<!-- 검색 시작 -->
 		<form action="getBoardList.do" method="post">

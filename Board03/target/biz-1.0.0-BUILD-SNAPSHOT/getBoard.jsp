@@ -6,6 +6,7 @@
 <title>Board</title>
 </head>
 <body>
+
 	<div align="center">
 		<h1>getBoard</h1>
 		<a href="logout.do">Log-out</a>
@@ -34,8 +35,7 @@
 
 				<tr>
 					<td bgcolor="orange"><p>Image:</p></td>
-					<td><img alt="image" src="${board.images}" /></td>
-					<td> <img alt="a" src="file:///c:/upload/1.gif"> </td>
+					<td><img alt="image" src="${board.images}"></td>
 				</tr>
 
 				<tr>

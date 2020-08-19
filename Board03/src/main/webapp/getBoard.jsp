@@ -12,7 +12,7 @@
 		<a href="logout.do">Log-out</a>
 		<form action="updateBoard.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="seq" value="${board.seq}" />
-			<table border="1" cellpadding="0" cellspacing="0">
+			<table border="1" style="border-spacing: 0; border-collapse: collapse;">
 				<tr>
 					<td bgcolor="orange" width="70px">제목</td>
 					<td align="left"><input type="text" name="title" value="${board.title}" /></td>

@@ -34,7 +34,8 @@
 
 				<tr>
 					<td bgcolor="orange"><p>Image:</p></td>
-					<td><img alt="image" src="${board.images}"></td>
+					<td><img alt="image" src="${board.images}" /></td>
+					<td> <img alt="a" src="file:///c:/upload/1.gif"> </td>
 				</tr>
 
 				<tr>

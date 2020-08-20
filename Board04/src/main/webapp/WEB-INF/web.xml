@@ -22,6 +22,18 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 
+	<!-- needed for ContextLoaderListener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>action</servlet-name>
@@ -33,21 +45,9 @@
 		</init-param>
 	</servlet>
 
-	<!-- needed for ContextLoaderListener -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext.xml</param-value>
-	</context-param>
-
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
-	<!-- Bootstraps the root web application context before servlet initialization -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener
-		</listener-class>
-	</listener>
 
 </web-app>

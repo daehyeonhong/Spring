@@ -8,12 +8,18 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<context:component-scan base-package="com.springbook.view" />
+	<context:component-scan
+		base-package="com.springbook.view" />
 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:maxUploadSize="100000" />
+	<mvc:annotation-driven />
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:maxUploadSize="100000" />
 
 	<!-- 예외처리 설정 -->
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
 				<prop key="java.lang.ArithMeticException">common/arithmeticError.jsp</prop>
@@ -25,7 +31,8 @@
 
 	<!-- 다국어 처리 -->
 	<!-- MessageSource 등록 -->
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>message.messageSource</value>
@@ -33,14 +40,15 @@
 		</property>
 	</bean>
 
-	<mvc:annotation-driven/>
 
 	<!-- LocaleResolver 등록 -->
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
 
 	<!-- LoacleChangeInterceptor 등록 -->
 	<mvc:interceptors>
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<property name="paramName" value="lang" />
 		</bean>
 	</mvc:interceptors>

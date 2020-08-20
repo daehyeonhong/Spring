@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.springbook.biz.user.UserVO;
 import com.springbook.biz.user.impl.UserDAO;
 
-@Controller /* Controller */
+@Controller
 public class LoginController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET) /* HandlerMapping */

@@ -12,6 +12,23 @@
 </style>
 </head>
 <body>
+	<script type="text/javascript">
+		function checkUpdate() {
+			let id = document.forms[0].id.value.trim();
+			let password = document.forms[0].password.value.trim();
+			if (id == '') {
+				alert('아이디를 입력하세요!');
+				document.forms[0].id.focus();
+				return false;
+			}
+			if (password == '') {
+				alert('비밀번호를 입력하세요!');
+				document.forms[0].password.focus();
+				return false;
+			}
+			location.href = 'updateInfo.do?id=' + id + '&password=' + password;
+		}
+	</script>
 	<div align="center">
 		<h1>
 			<em><spring:message code="message.user.login.title"/></em>
@@ -34,7 +51,11 @@
 					<td><input type="password" name="password" value="${user.password}" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="<spring:message code="message.user.login.loginBtn" />" /></td>
+					<td colspan="2">
+						<input type="submit" value="<spring:message code="message.user.login.loginBtn" />" />
+						<input type="button" value="<spring:message code="message.user.login.registBtn" />" onclick="location.href='register.do'" />
+						<input type="button" value="<spring:message code="message.user.login.updateBtn" />" onclick="return checkUpdate()" />
+					</td>
 				</tr>
 			</table>
 		</form>

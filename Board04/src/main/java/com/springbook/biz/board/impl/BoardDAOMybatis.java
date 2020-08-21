@@ -27,9 +27,9 @@ public class BoardDAOMybatis {
 		System.out.println("==> Mybatis로 updateBoard() 기능 처리");
 		MultipartFile uploadFile = vo.getUploadFile();
 		if (!uploadFile.isEmpty()) {
-			mybatis.update("BoardDAO.updataeBoard", vo);
+			mybatis.update("BoardDAO.updateBoard", vo);
 		} else {
-			mybatis.update("BoardDAO.updataeBoardN", vo);
+			mybatis.update("BoardDAO.updateBoardN", vo);
 		}
 	}
 

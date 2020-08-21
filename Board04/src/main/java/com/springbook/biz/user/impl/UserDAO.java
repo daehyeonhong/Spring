@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.springbook.biz.common.JDBCUtil;
 import com.springbook.biz.user.UserVO;
 
-@Repository("userDAO")
+/*@Repository("userDAO")*/
 public class UserDAO {
 
 	/* JDBC */

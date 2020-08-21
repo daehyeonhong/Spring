@@ -5,10 +5,13 @@
 
 	<typeAliases>
 		<typeAlias type="com.springbook.biz.BoardVO" alias="board" />
+		<typeAlias type="com.springbook.biz.user.UserVO" alias="user" />
+		<typeAlias type="com.springbook.biz.user.RoleVO" alias="role" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mappings/board-mapping.xml" />
+		<mapper resource="mappings/user-mapping.xml" />
 	</mappers>
 
 </configuration>

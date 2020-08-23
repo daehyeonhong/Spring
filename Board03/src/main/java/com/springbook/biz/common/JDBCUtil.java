@@ -9,7 +9,7 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@15.165.66.140:1521:xe", user = "ttestt", password = "ttestt11";
+			String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe", user = "hr", password = "hr";
 			return DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
 			e.printStackTrace();

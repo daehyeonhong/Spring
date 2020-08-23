@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="BoardDAO">
+ <!-- select 결과 받는 객체  -->
+ <resultMap type="board" id="boardResult">
+ <id property="seq" column="seq"/>
+ <result property="title" column="title"/>
+ <result property="writer" column="writer"/>
+ <result property="content" column="content"/>
+ <result property="regDate" column="regDate"/>
+ <result property="cnt" column="cnt"/>
+ <result property="images" column="uploadfile"/>
+ </resultMap>
+ 
+ <insert id="insertBoard" parameterType="board">
+ <![CDATA[
+  insert into board(seq,title,writer,content,uploadFile) 
+ values((select nvl(max(seq),0)+1 from board),
+         #{title},#{writer},#{content},#{images})
+  ]]>      
+ </insert>
+ 
+ <select id="getBoardList" parameterType="board" resultMap="boardResult">
+    select * from board where 1=1
+    <if test="searchCondition=='TITLE'">
+         and title like '%'||#{searchKeyword}||'%'
+    </if>
+    <if test="searchCondition=='CONTENT'">
+         and content like '%'||#{searchKeyword}||'%'
+    </if>
+    order by seq desc
+ </select>
+ 
+ <update id="updateBoard" parameterType="board">
+ <![CDATA[
+update board 
+      set title=#{title},content=#{content},uploadfile=#{images}
+ where seq=#{seq}
+  ]]> 
+ </update>
+ 
+ <update id="updateBoard2" parameterType="board">
+  <![CDATA[
+update board 
+      set title=#{title},content=#{content}
+ where seq=#{seq}
+  ]]> 
+ </update>
+ 
+ <delete id="deleteBoard" parameterType="board">
+  <![CDATA[
+     delete from board where seq=#{seq}
+    ]]>
+ </delete>
+ 
+ <select id="getBoard" resultType="board">
+ <![CDATA[
+   select * from board where seq=#{seq}
+  ]]>  
+ </select>
+ 
+ <update id="updateBoardCnt" parameterType="board">
+   <![CDATA[
+   	update board set cnt=nvl(cnt,0)+1 where seq=#{seq}
+   ]]>
+ </update>
+ 
+</mapper>
